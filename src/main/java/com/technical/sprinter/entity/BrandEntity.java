@@ -9,14 +9,14 @@ import java.util.List;
 @Table(name = "items")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Setter
 @Getter
 @EqualsAndHashCode(callSuper = true)
-public class Brand extends BaseEntity {
+public class BrandEntity extends BaseEntity {
 
     @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
-    private List<Item> items;
+    private List<ItemEntity> items;
 }

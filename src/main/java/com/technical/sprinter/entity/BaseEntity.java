@@ -1,8 +1,6 @@
 package com.technical.sprinter.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -11,6 +9,7 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Getter
+@Setter
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor

@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Table(name = "items")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Setter
 @Getter
 @EqualsAndHashCode(callSuper = true)
-public class Item extends BaseEntity {
+public class ItemEntity extends BaseEntity {
 
     @Column(name = "reference_code")
     private String referenceCode;
@@ -21,7 +21,7 @@ public class Item extends BaseEntity {
 
     @ManyToOne()
     @JoinColumn(name = "brand_id")
-    private Brand brand;
+    private BrandEntity brand;
 
     @Column(name = "size")
     private String size;

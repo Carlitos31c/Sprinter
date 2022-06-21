@@ -1,0 +1,153 @@
+openapi: 3.0.0
+info:
+  title: Sprinter API
+  version: 0.1.0
+  contact:
+    name: Sprinter
+  description: Sprinter API
+servers:
+  - url: "http://localhost:8080"
+paths:
+  /items:
+    post:
+      description: Create item
+      summary: createItem
+      operationId: createItemDetails
+      tags:
+        - Items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/itemDetails"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/itemDetails"
+  /items/{id}:
+    get:
+      description: Reads details about an item
+      summary: readItemDetails
+      operationId: readItemDetails
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/itemDetails"
+    put:
+      description: Modify details about an item
+      summary: modifyItemDetails
+      operationId: modifyItemDetails
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/itemDetails"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/itemDetails"
+    delete:
+      description: Delete details about an item
+      summary: deleteItemDetails
+      operationId: deleteItemDetails
+      tags:
+        - Items
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/itemDetails"
+
+components:
+  schemas:
+    brandDetails:
+      title: Brand details
+      description: Brand information
+      type: object
+      properties:
+        id:
+          description: Brand id.
+          type: number
+          example: 1
+        creationDate:
+          description: Brand creation date.
+          type: string
+          format: date
+          example: '2022-01-01'
+        name:
+          description: Brand name.
+          type: string
+          example: 'Adidas'
+    itemDetails:
+      title: Item details
+      description: Item information
+      type: object
+      properties:
+        id:
+          description: Item id.
+          type: number
+          example: 1
+        creationDate:
+          description: Item creation date.
+          type: string
+          format: date
+          example: '2022-01-01'
+        referenceCode:
+          description: Item reference code.
+          type: string
+          example: 'IT12345'
+        name:
+          description: Item name.
+          type: string
+          example: 'Shirt'
+        brand:
+          $ref: "#/components/schemas/brandDetails"
+        size:
+          description: Item size.
+          type: string
+          example: 'S'
+        material:
+          description: Item material.
+          type: string
+          example: 'Poliester'
+        color:
+          description: Item color.
+          type: string
+          example: 'Blanco'
+        sport:
+          description: Item sport.
+          type: string
+          example: 'Fitness'

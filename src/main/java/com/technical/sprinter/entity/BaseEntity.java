@@ -1,4 +1,4 @@
-package com.technical.sprinter.entities;
+package com.technical.sprinter.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

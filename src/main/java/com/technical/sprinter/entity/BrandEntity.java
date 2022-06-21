@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "items")
+@Table(name = "brands", schema = "sprinter")
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -17,6 +17,6 @@ public class BrandEntity extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ItemEntity> items;
 }

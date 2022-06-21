@@ -3,6 +3,7 @@ CREATE SCHEMA sprinter;
 CREATE TABLE sprinter.brands (
     id INTEGER NOT NULL,
     name VARCHAR(255),
+    creation_date TIMESTAMP without time zone,
     PRIMARY KEY(id)
 );
 

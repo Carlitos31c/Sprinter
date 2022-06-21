@@ -39,7 +39,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
@@ -58,7 +59,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       requestBody:
         content:
           application/json:
@@ -82,7 +84,8 @@ paths:
           in: path
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         "200":
           description: OK
@@ -100,7 +103,8 @@ components:
       properties:
         id:
           description: Brand id.
-          type: number
+          type: integer
+          format: int64
           example: 1
         creationDate:
           description: Brand creation date.
@@ -118,7 +122,8 @@ components:
       properties:
         id:
           description: Item id.
-          type: number
+          type: integer
+          format: int64
           example: 1
         creationDate:
           description: Item creation date.

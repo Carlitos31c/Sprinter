@@ -1,12 +1,12 @@
-openapi: 3.0.0
+openapi: 3.0.1
 info:
   title: Sprinter API
-  version: 0.1.0
-  contact:
-    name: Sprinter
-  description: Sprinter API
+  version: v1
+  description: API for Sprinter technical test
 servers:
   - url: "http://localhost:8080"
+security:
+  - basicAuth: []
 paths:
   /items:
     get:
@@ -248,3 +248,7 @@ components:
           type: boolean
         empty:
           type: boolean
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

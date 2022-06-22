@@ -6,6 +6,8 @@ server:
     8080
 
 spring:
+  application:
+    name: sprinter-micro
   h2:
     console:
       enabled: false
@@ -20,3 +22,11 @@ spring:
       hibernate:
         format_sql: true
         hibernate.dialect: org.hibernate.dialect.H2Dialect
+  security:
+    user:
+      name: sprinter
+      password: sprinter
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs

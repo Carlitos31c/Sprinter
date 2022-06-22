@@ -2,6 +2,7 @@ package com.technical.sprinter.service.impl;
 
 import com.sun.javafx.binding.StringFormatter;
 import com.technical.sprinter.entity.ItemEntity;
+import com.technical.sprinter.exception.ExceptionCodes;
 import com.technical.sprinter.exception.NotFoundException;
 import com.technical.sprinter.mapper.ItemMapper;
 import com.technical.sprinter.model.ItemDetails;
@@ -42,7 +43,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemDetails readItem(Long id) {
         ItemEntity item = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException(String.format("Item not found %d", id)));
+                .orElseThrow(() -> new NotFoundException(String.format(ExceptionCodes.NOT_FOUND_EXCEPTION.getMessage(), id)));
 
         return mapper.mapToDto(item);
     }

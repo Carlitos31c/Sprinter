@@ -1,6 +1,8 @@
 package com.technical.sprinter.service;
 
 import com.technical.sprinter.model.ItemDetails;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ItemService {
 
@@ -11,4 +13,6 @@ public interface ItemService {
     ItemDetails modifyItem(ItemDetails item);
 
     ItemDetails readItem(Long id);
+
+    Page<ItemDetails> readAllItems(Pageable pageable);
 }

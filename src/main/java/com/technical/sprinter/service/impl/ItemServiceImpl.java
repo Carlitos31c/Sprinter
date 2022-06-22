@@ -10,6 +10,8 @@ import com.technical.sprinter.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,5 +45,11 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(() -> new NotFoundException(String.format("Item not found %d", id)));
 
         return mapper.mapToDto(item);
+    }
+
+    @Override
+    public Page<ItemDetails> readAllItems(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(mapper::mapToDto);
     }
 }

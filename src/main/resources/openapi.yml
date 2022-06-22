@@ -9,6 +9,25 @@ servers:
   - url: "http://localhost:8080"
 paths:
   /items:
+    get:
+      description: Read all items
+      summary: readAllItem
+      operationId: readAllItemsDetails
+      tags:
+        - Items
+      parameters:
+        - name: pageable
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageItemDetails'
     post:
       description: Create item
       summary: createItem
@@ -19,14 +38,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/itemDetails"
+              $ref: "#/components/schemas/ItemDetails"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/itemDetails"
+                $ref: "#/components/schemas/ItemDetails"
   /items/{id}:
     get:
       description: Reads details about an item
@@ -47,7 +66,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/itemDetails"
+                $ref: "#/components/schemas/ItemDetails"
     put:
       description: Modify details about an item
       summary: modifyItemDetails
@@ -65,14 +84,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/itemDetails"
+              $ref: "#/components/schemas/ItemDetails"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/itemDetails"
+                $ref: "#/components/schemas/ItemDetails"
     delete:
       description: Delete details about an item
       summary: deleteItemDetails
@@ -92,11 +111,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/itemDetails"
+                $ref: "#/components/schemas/ItemDetails"
 
 components:
   schemas:
-    brandDetails:
+    BrandDetails:
       title: Brand details
       description: Brand information
       type: object
@@ -115,7 +134,7 @@ components:
           description: Brand name.
           type: string
           example: 'Adidas'
-    itemDetails:
+    ItemDetails:
       title: Item details
       description: Item information
       type: object
@@ -139,7 +158,7 @@ components:
           type: string
           example: 'Shirt'
         brand:
-          $ref: "#/components/schemas/brandDetails"
+          $ref: "#/components/schemas/BrandDetails"
         size:
           description: Item size.
           type: string
@@ -156,3 +175,76 @@ components:
           description: Item sport.
           type: string
           example: 'Fitness'
+    Pageable:
+      description: Minimal Pageable query parameters
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            type: string
+    PageItemDetails:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        last:
+          type: boolean
+        first:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemDetails'
+        number:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        sort:
+          $ref: '#/components/schemas/Sort'
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
+        offset:
+          type: integer
+          format: int64
+    Sort:
+      type: object
+      properties:
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+        empty:
+          type: boolean

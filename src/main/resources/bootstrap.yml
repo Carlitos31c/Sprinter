@@ -1,3 +1,8 @@
+project:
+  version: @project.version@
+
 spring:
+  application:
+    name: sprinter-micro
   profiles:
-    active: local
+    active: pro

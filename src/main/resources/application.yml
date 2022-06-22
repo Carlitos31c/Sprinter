@@ -6,15 +6,13 @@ server:
     8080
 
 spring:
-  application:
-    name: sprinter-micro
   h2:
     console:
-      enabled: true
+      enabled: false
   datasource:
     url: jdbc:h2:mem:sprinter
     username: admin
-    password:
+    password: admin
     driverClassName: org.h2.Driver
   jpa:
     hibernate.ddl-auto: none

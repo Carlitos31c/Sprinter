@@ -2,6 +2,7 @@ package com.technical.sprinter.service.impl;
 
 import com.sun.javafx.binding.StringFormatter;
 import com.technical.sprinter.entity.ItemEntity;
+import com.technical.sprinter.exception.ConflictException;
 import com.technical.sprinter.exception.ExceptionCodes;
 import com.technical.sprinter.exception.NotFoundException;
 import com.technical.sprinter.mapper.ItemMapper;
@@ -15,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -25,6 +28,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDetails createItem(ItemDetails item) {
+        item.setId(null);
         return mapper.mapToDto(repository.save(mapper.mapToEntity(item)));
     }
 
@@ -35,7 +39,10 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemDetails modifyItem(ItemDetails item) {
+    public ItemDetails modifyItem(Long id, ItemDetails item) {
+        if (!Objects.equals(id, item.getId())) {
+            throw new ConflictException(String.format(ExceptionCodes.CONFLICT_EXCEPTION.getMessage(), id, item.getId()));
+        }
         return mapper.mapToDto(repository.save(mapper.mapToEntity(item)));
     }
 

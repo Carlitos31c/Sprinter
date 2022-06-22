@@ -8,7 +8,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    private static final String[] SWAGGER_WHITELIST = {
+    private static final String[] WHITELIST_URLS = {
+            "/h2-console/**",
             "/v3/api-docs/**",
             "/swagger-ui/**"
     };
@@ -18,13 +19,13 @@ public class SecurityConfig {
         http.cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers(SWAGGER_WHITELIST).permitAll()
-                .anyRequest().permitAll()/*.authenticated()*/
+                .antMatchers(WHITELIST_URLS).permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
-                .csrf()
-                .disable();
+                .csrf().disable()
+                .headers().frameOptions().disable();
 
         return http.build();
     }

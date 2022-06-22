@@ -37,7 +37,7 @@ public class ItemsController {
     public ResponseEntity<ItemDetails> modifyItemDetails(@PathVariable("id") Long id,
                                                          @Valid @RequestBody ItemDetails itemDetails) {
         log.info("Modify item {} with id {}", itemDetails, id);
-        return new ResponseEntity<>(service.modifyItem(itemDetails), HttpStatus.OK);
+        return new ResponseEntity<>(service.modifyItem(id, itemDetails), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

@@ -28,8 +28,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDetails createItem(ItemDetails item) {
-        item.setId(null);
-        return mapper.mapToDto(repository.save(mapper.mapToEntity(item)));
+        return mapper.mapToDto(repository.save(mapper.mapToEntitySave(item)));
     }
 
     @Override
@@ -43,7 +42,11 @@ public class ItemServiceImpl implements ItemService {
         if (!Objects.equals(id, item.getId())) {
             throw new ConflictException(String.format(ExceptionCodes.CONFLICT_EXCEPTION.getMessage(), id, item.getId()));
         }
-        return mapper.mapToDto(repository.save(mapper.mapToEntity(item)));
+
+        ItemDetails savedItem = this.readItem(id);
+        savedItem = mapper.mapToEntityUpdate(savedItem, item);
+
+        return mapper.mapToDto(repository.save(mapper.mapToEntity(savedItem)));
     }
 
     @SneakyThrows

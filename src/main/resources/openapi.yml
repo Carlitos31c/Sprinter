@@ -128,7 +128,7 @@ components:
         creationDate:
           description: Brand creation date.
           type: string
-          format: date
+          format: date-time
           example: '2022-01-01'
         name:
           description: Brand name.
@@ -147,7 +147,7 @@ components:
         creationDate:
           description: Item creation date.
           type: string
-          format: date
+          format: date-time
           example: '2022-01-01'
         referenceCode:
           description: Item reference code.

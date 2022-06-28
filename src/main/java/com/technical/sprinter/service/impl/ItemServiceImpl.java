@@ -1,6 +1,5 @@
 package com.technical.sprinter.service.impl;
 
-import com.sun.javafx.binding.StringFormatter;
 import com.technical.sprinter.entity.ItemEntity;
 import com.technical.sprinter.exception.ConflictException;
 import com.technical.sprinter.exception.ExceptionCodes;
@@ -12,6 +11,8 @@ import com.technical.sprinter.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ import java.util.Objects;
 @Slf4j
 @RequiredArgsConstructor
 public class ItemServiceImpl implements ItemService {
+
+    @Value("${sprinter.cache.sleep}")
+    private Long cacheSleepMilis;
 
     private final ItemRepository repository;
     private final ItemMapper mapper;
@@ -58,8 +62,12 @@ public class ItemServiceImpl implements ItemService {
         return mapper.mapToDto(item);
     }
 
+    @SneakyThrows
+    @Cacheable("items")
     @Override
     public Page<ItemDetails> readAllItems(Pageable pageable) {
+        Thread.sleep(cacheSleepMilis); // To test cache in the first iteration
+
         return repository.findAll(pageable)
                 .map(mapper::mapToDto);
     }

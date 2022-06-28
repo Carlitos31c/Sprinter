@@ -30,3 +30,7 @@ spring:
 springdoc:
   api-docs:
     path: /v3/api-docs
+
+sprinter:
+  cache:
+    sleep: 5000

@@ -19,6 +19,7 @@
 		<springfox.version>2.9.2</springfox.version>
 		<springdoc.version>1.6.7</springdoc.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
+		<springcache.version>2.4.0</springcache.version>
 	</properties>
 	<dependencies>
 
@@ -97,6 +98,13 @@
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-security</artifactId>
 			<version>${springdoc.version}</version>
+		</dependency>
+
+		<!-- CACHE -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+			<version>${springcache.version}</version>
 		</dependency>
 
 	</dependencies>

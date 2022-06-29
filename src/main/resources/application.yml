@@ -16,6 +16,13 @@ spring:
     username: admin
     password: admin
     driverClassName: org.h2.Driver
+    hikari:
+      poolName: sprinter-pool
+      connection-timeout: 30000
+      idle-timeout: 600000
+      minimum-idle: 10
+      maximum-pool-size: 10
+      max-lifetime: 180000
   jpa:
     hibernate.ddl-auto: none
     properties:

@@ -1,4 +1,7 @@
-CREATE SCHEMA sprinter;
+CREATE SCHEMA IF NOT EXISTS sprinter;
+
+DROP TABLE IF EXISTS sprinter.items;
+DROP TABLE IF EXISTS sprinter.brands;
 
 CREATE TABLE sprinter.brands (
     id INTEGER NOT NULL,

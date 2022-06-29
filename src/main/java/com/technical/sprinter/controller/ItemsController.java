@@ -27,7 +27,7 @@ public class ItemsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ItemDetails> deleteItemDetails(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteItemDetails(@PathVariable("id") Long id) {
         log.info("Delete item with id {}", id);
         service.deleteItem(id);
         return ResponseEntity.noContent().build();

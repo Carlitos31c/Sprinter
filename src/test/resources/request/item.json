@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "creationDate": "2022-01-02T01:00Z",
+  "referenceCode": "AD643346",
+  "name": "Camiseta manga corta running",
+  "brand": {
+    "id": 1,
+    "creationDate": "2022-01-01T01:00Z",
+    "name": "Adidas"
+  },
+  "size": "XS",
+  "material": "Poliester",
+  "color": "Blanco",
+  "sport": "Fitness"
+}

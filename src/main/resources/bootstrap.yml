@@ -1,0 +1,6 @@
+project:
+  version: @project.version@
+
+spring:
+  profiles:
+    active: pro

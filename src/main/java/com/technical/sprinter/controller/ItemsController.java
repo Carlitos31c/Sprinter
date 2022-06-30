@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,7 +49,8 @@ public class ItemsController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ItemDetails>> readAllItemDetails(Pageable pageable) {
+    public ResponseEntity<Page<ItemDetails>> readAllItemDetails(
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         log.info("Find all items detail");
         return new ResponseEntity<>(service.readAllItems(pageable), HttpStatus.OK);
     }

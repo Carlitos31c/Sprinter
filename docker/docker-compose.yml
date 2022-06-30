@@ -1,0 +1,8 @@
+version: '3'
+services:
+  sprinter-ms:
+    image: 'sprinter-ms:latest'
+    container_name: sprinter-ms
+    build: ../
+    ports:
+      - 8080:8080
